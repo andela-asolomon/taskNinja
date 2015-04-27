@@ -3,6 +3,10 @@
 app.controller('AuthController', ['$scope', '$location', 'Authentication', 'toaster',
 	function($scope, $location, Authentication, toaster) {
 
+	// if (Authentication.signedIn) {
+	// 	$location.path('/');
+	// } 
+
 	$scope.register = function(user) {
 		Authentication.register(user).then(function() {
 			toaster.pop('success', 'Registered Successfully');
@@ -11,7 +15,7 @@ app.controller('AuthController', ['$scope', '$location', 'Authentication', 'toas
 			console.log('err: ', err);
 			toaster.pop('error', 'Registration Unsuccesful');
 		});
-	}
+	};
 
 	$scope.login = function(user) {
 		Authentication.login(user).then(function() {
@@ -20,13 +24,13 @@ app.controller('AuthController', ['$scope', '$location', 'Authentication', 'toas
 		}, function(err) {
 			toaster.pop('error', 'Login Unsuccesful');
 		});
-	}
+	};
 
 	$scope.loginWithGoogle = function() {
 		Authentication.loginWithGoogle();
 		toaster.pop('success', 'Login Successfully');
 		$location.path('/');
-	}
+	};
 
 	$scope.changePassword = function(user) {
 
@@ -40,7 +44,7 @@ app.controller('AuthController', ['$scope', '$location', 'Authentication', 'toas
 		}, function(err) {
 			toaster.pop('error', 'Login Unsuccesful');
 		});
-	}
+	};
 
 
-}])
+}]);
